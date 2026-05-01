@@ -1,3 +1,3 @@
-module github.com/minio/mux
+module github.com/libreFS/mux
 
-go 1.23
+go 1.26

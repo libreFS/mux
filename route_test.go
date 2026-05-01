@@ -9,8 +9,10 @@ import (
 	"testing"
 )
 
-var testNewRouterMu sync.Mutex
-var testHandler = http.NotFoundHandler()
+var (
+	testNewRouterMu sync.Mutex
+	testHandler     = http.NotFoundHandler()
+)
 
 func BenchmarkNewRouter(b *testing.B) {
 	testNewRouterMu.Lock()
@@ -82,7 +84,6 @@ func TestRouteMetadata(t *testing.T) {
 			println(metadata)
 			t.Fatalf("Expected map does not equal the metadata map")
 		}
-
 	}).Metadata("key", "value")
 
 	router.HandleFunc("/single-value", func(w http.ResponseWriter, r *http.Request) {
@@ -109,7 +110,6 @@ func TestRouteMetadata(t *testing.T) {
 		if !errors.Is(err, ErrMetadataKeyNotFound) {
 			t.Fatalf("Expected error to be ErrMetadataKeyNotFound but got: %s", err)
 		}
-
 	}).Metadata("key", "value")
 
 	router.HandleFunc("/single-value-fallback", func(w http.ResponseWriter, r *http.Request) {
@@ -134,7 +134,6 @@ func TestRouteMetadata(t *testing.T) {
 		if fallbackStringValue != "value2" {
 			t.Fatalf("Expected metadata value to be '%s', but got '%s'", "value2", fallbackStringValue)
 		}
-
 	}).Metadata("key", "value")
 
 	t.Run("get metadata map", func(t *testing.T) {

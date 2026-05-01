@@ -1,0 +1,47 @@
+version: "2"
+
+formatters:
+  enable:
+    - gofumpt
+    - goimports
+
+linters:
+  default: none
+  enable:
+    - govet
+    - ineffassign
+    - misspell
+    - revive
+    - staticcheck
+    - unconvert
+    - unused
+  settings:
+    misspell:
+      locale: US
+    staticcheck:
+      checks:
+        - all
+        - -ST1000
+        - -ST1005
+        - -ST1016
+        - -ST1017
+        - -ST1020
+        - -ST1021
+        - -QF1003
+        - -ST1012
+  exclusions:
+    rules:
+      - path: (.+)\.go$
+        text: "exported: "
+      - path: (.+)\.go$
+        text: "package-comments:"
+      - path: (.+)\.go$
+        text: "unused-parameter:"
+      - path: (.+)\.go$
+        text: "behaviour"
+      - path: (.+)\.go$
+        text: "error-naming:"
+
+issues:
+  max-issues-per-linter: 100
+  max-same-issues: 100

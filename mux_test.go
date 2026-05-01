@@ -53,7 +53,6 @@ type routeTest struct {
 }
 
 func TestHost(t *testing.T) {
-
 	tests := []routeTest{
 		{
 			title:       "Host route match",
@@ -1758,7 +1757,7 @@ func TestSubrouterErrorHandling(t *testing.T) {
 	}
 }
 
-// See: https://github.com/gorilla/mux/issues/200
+// See: https://github.com/libreFS/mux/issues/200
 func TestPanicOnCapturingGroups(t *testing.T) {
 	defer func() {
 		if recover() == nil {
@@ -2180,7 +2179,6 @@ func TestMultipleDefinitionOfSamePathWithDifferentMethods(t *testing.T) {
 			t.Error("Should have ErrMethodMismatch error. Found:", match.MatchErr)
 		}
 	})
-
 }
 
 func TestMultipleDefinitionOfSamePathWithDifferentQueries(t *testing.T) {
